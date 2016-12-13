@@ -4,8 +4,11 @@ Add pins, follow and display options to your app.
 * Credentials: clientId, clientSecret
 
 ## How to get credentials: 
-0. Item one 
-1. Item two
+0. You’ll need to be logged in to your Pinterest account to create an app. If you don’t have a Pinterest account, [create one now](https://www.pinterest.com/). 
+1. To create new app go to [Apps](https://developers.pinterest.com/apps/)
+2. Agree to our terms and policies and click *Create app.*
+3. Choose a name and description for your app. Be careful, you won’t be able to change the name of your app later. Click *Create.*
+4. After creation your app you will see Client Id and Client Secret
  
 ## Pinterest.getAccessToken
 This endpoint allows to get back a access token.

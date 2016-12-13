@@ -1,612 +1,793 @@
 {
-    "package": "Pinterest",
-    "tagline": "Pinterest API",
-    "description": "Add pins, follow and display options to your app.",
-    "image": "http://logo.clearbit.com/pinterest.com",
-    "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-Pinterest-package",
-    "keywords": ["API", "images", "marketing", "pin", "pinning", "shop", "shopping", "social", "visual"],
-    "accounts": {
-        "domain": "pinterest.com",
-        "credentials": ["clientId", "clientSecret"]
+  "package": "Pinterest",
+  "tagline": "Pinterest API",
+  "description": "Add pins, follow and display options to your app.",
+  "image": "http://logo.clearbit.com/pinterest.com",
+  "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-Pinterest-package",
+  "keywords": [
+    "API",
+    "images",
+    "marketing",
+    "pin",
+    "pinning",
+    "shop",
+    "shopping",
+    "social",
+    "visual"
+  ],
+  "accounts": {
+    "domain": "pinterest.com",
+    "credentials": [
+      "clientId",
+      "clientSecret"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "getAccessToken",
+      "description": "This endpoint allows to get back a access token.",
+      "args": [
+        {
+          "name": "clientId",
+          "type": "credentials",
+          "info": "The Client ID obtained from Pinterest.",
+          "required": true
+        },
+        {
+          "name": "clientSecret",
+          "type": "credentials",
+          "info": "The Client Secret obtained from Pinterest.",
+          "required": true
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "info": "The access code you received from your redirect URI.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
     },
-    "blocks": [{
-            "name": "getAccessToken",
-            "description": "This endpoint allows to get back a access token.",
-            "args": [{
-                    "name": "clientId",
-                    "type": "credentials",
-                    "info": "The Client ID obtained from Pinterest.",
-                    "required": true
-                }, {
-                    "name": "clientSecret",
-                    "type": "credentials",
-                    "info": "The Client Secret obtained from Pinterest.",
-                    "required": true
-                }, {
-                    "name": "code",
-                    "type": "String",
-                    "info": "The access code you received from your redirect URI.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getUser",
-            "description": "This endpoint allows to fetch user data.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getBoards",
-            "description": "This endpoint returns a list of the authenticated user’s public boards, including the URL, ID and name.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getBoardsSuggestions",
-            "description": "This endpoint returns the boards that Pinterest would suggest to the authenticated user if they were to save the specified Pin. The default response returns the ID, URL and name of the boards.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "pinId",
-                    "type": "String",
-                    "test": "186477309509918069",
-                    "info": "The pin_id that you want to return board suggestions for.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getUserLikedPins",
-            "description": "This endpoint returns the ID, link, URL and description of the Pins the authenticated user has liked.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getUserPins",
-            "description": "This endpoint returns the ID, link, URL and descriptions of the authenticated user’s Pins.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "searchBoardNames",
-            "description": "Searches the authenticated user’s board names (but not Pins on boards). An empty response indicates that nothing was found that matched your search terms. The default response returns the ID, name and URL of boards matching your query.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "query",
-                    "type": "String",
-                    "test": "API's",
-                    "info": "What you want to search for.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "searchPinDescriptions",
-            "description": "Searches the authenticated user’s Pin descriptions. An empty response indicates that nothing was found that matched your search terms. The default response returns the ID, link, URL and description of Pins matching your query.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "query",
-                    "type": "String",
-                    "test": "Alcazar Castle",
-                    "info": "What you want to search for.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getFollowers",
-            "description": "Returns the users who follow the authenticated user. The default response returns the first and last name, ID and URL of the users.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getFollowedBoards",
-            "description": "Returns the boards that the authenticated user follows. The default response returns the ID, name and URL of the board.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getFollowedTopics",
-            "description": "Returns the topics (e.g, modern architecture, Sherlock) that the authenticated user follows. The default response returns the ID and name of the topic.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getFollowings",
-            "description": "Returns the users that the authenticated user follows. The default response returns the first and last name, ID and URL of the users.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "followBoard",
-            "description": "Makes the authenticated user follow the specified board.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "designboom/technology",
-                    "info": "The board you want to follow in the format <username>/<board_name>. For example: designboom/technology",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "followUser",
-            "description": "Makes the authenticated user follow the specified user.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "user",
-                    "type": "String",
-                    "test": "designboom",
-                    "info": "The username of the user that you want to follow. For example: designboom",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "unfollowBoard",
-            "description": "Makes the authenticated user unfollow the specified board.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "designboom/technology",
-                    "info": "The board you want to unfollow in the format <username>/<board_name>. For example: designboom/technology",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "unfollowUser",
-            "description": "Makes the authenticated user unfollow the specified user.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "user",
-                    "type": "String",
-                    "test": "designboom",
-                    "info": "The username or user ID of the user you want to unfollow. For example: designboom",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "createBoard",
-            "description": "Creates a board for the authenticated user. The default response returns the ID, URL and name of the created board.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "name",
-                    "type": "String",
-                    "test": "myboard",
-                    "info": "The name of the new board.",
-                    "required": true
-                }, {
-                    "name": "description",
-                    "type": "String",
-                    "info": "The new board’s description.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getSingleBoard",
-            "description": "The default response returns the ID, URL and name of the specified board.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "rapidapi/myboard",
-                    "info": "The board you want to fetch in the format <username>/<board_name>. For example: designboom/technology",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "updateSingleBoard",
-            "description": "Changes the chosen board’s name and/or description. The default response returns the ID, URL and name of the edited board.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "rapidapi/myboard",
-                    "info": "The board you want to edit in the format <username>/<board_name>. For example: designboom/technology",
-                    "required": true
-                }, {
-                    "name": "name",
-                    "type": "String",
-                    "test": "myboard_new",
-                    "info": "The new board name.",
-                    "required": false
-                }, {
-                    "name": "description",
-                    "type": "String",
-                    "test": "new description",
-                    "info": "The new board description.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "deleteBoard",
-            "description": "Deletes the specified board. This action is permanent and cannot be undone.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "rapidapi/myboard",
-                    "info": "The board you want to delete in the format <username>/<board_name>. For example: designboom/technology",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "createSinglePin",
-            "description": "Creates a Pin for the authenticated user. The default response returns the note, URL, link and ID of the created Pin.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "rapidapi/myboard",
-                    "info": "The board you want the new Pin to be on. In the format <username>/<board_name>. For example: designboom/technology",
-                    "required": true
-                }, {
-                    "name": "note",
-                    "type": "String",
-                    "test": "Pin description",
-                    "info": "The Pin’s description.",
-                    "required": true
-                }, {
-                    "name": "image",
-                    "type": "File",
-                    "test": "https://lh3.googleusercontent.com/7q3U4D2TZmBol565nl6tKyPmbnNZZXwGBubYhGl7IpqKcLAjC7G-hPFg0R6DMorOxvz-iReh9GYAVUQWqd2pZF4FvVix6voQ=s888",
-                    "info": "Upload the image you want to pin",
-                    "required": true
-                }, {
-                    "name": "link",
-                    "type": "String",
-                    "info": "The URL the Pin will link to when you click through.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "updateSinglePin",
-            "description": "Changes the board, description and/or link of the Pin.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "pin",
-                    "type": "String",
-                    "info": "The ID (unique string of numbers and letters) of the Pin you want to edit.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "rapidapi/myboard",
-                    "info": "The board you want to move the Pin to, in the format <username>/<board_name>. For example: designboom/technology",
-                    "required": false
-                }, {
-                    "name": "note",
-                    "type": "String",
-                    "test": "Pin description",
-                    "info": "The new Pin description.",
-                    "required": false
-                }, {
-                    "name": "link",
-                    "type": "String",
-                    "info": "The new Pin link.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getSinglePin",
-            "description": "The default response returns the ID, link, URL and description of the Pin.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "pin",
-                    "type": "String",
-                    "info": "The ID (unique string of numbers and letters) of the Pin you want information about.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "deleteSinglePin",
-            "description": "Deletes the specified Pin. This action is permanent and cannot be undone.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "pin",
-                    "type": "String",
-                    "info": "The ID (unique string of numbers and letters) of the Pin you want to delete.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getBoardPins",
-            "description": "The default response returns a list of Pins on the board with their ID, URL, link and description.",
-            "args": [{
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The valid access token.",
-                    "required": true
-                }, {
-                    "name": "board",
-                    "type": "String",
-                    "test": "rapidapi/myboard",
-                    "info": "The board you want to fetch in the format <username>/<board_name>. For example: designboom/technology",
-                    "required": true
-                }, {
-                    "name": "cursor",
-                    "type": "String",
-                    "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }]
+    {
+      "name": "getUser",
+      "description": "This endpoint allows to fetch user data.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getBoards",
+      "description": "This endpoint returns a list of the authenticated user’s public boards, including the URL, ID and name.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getBoardsSuggestions",
+      "description": "This endpoint returns the boards that Pinterest would suggest to the authenticated user if they were to save the specified Pin. The default response returns the ID, URL and name of the boards.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "pinId",
+          "type": "String",
+          "info": "The pin_id that you want to return board suggestions for.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserLikedPins",
+      "description": "This endpoint returns the ID, link, URL and description of the Pins the authenticated user has liked.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserPins",
+      "description": "This endpoint returns the ID, link, URL and descriptions of the authenticated user’s Pins.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchBoardNames",
+      "description": "Searches the authenticated user’s board names (but not Pins on boards). An empty response indicates that nothing was found that matched your search terms. The default response returns the ID, name and URL of boards matching your query.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "What you want to search for.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchPinDescriptions",
+      "description": "Searches the authenticated user’s Pin descriptions. An empty response indicates that nothing was found that matched your search terms. The default response returns the ID, link, URL and description of Pins matching your query.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "What you want to search for.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getFollowers",
+      "description": "Returns the users who follow the authenticated user. The default response returns the first and last name, ID and URL of the users.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getFollowedBoards",
+      "description": "Returns the boards that the authenticated user follows. The default response returns the ID, name and URL of the board.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getFollowedTopics",
+      "description": "Returns the topics (e.g, modern architecture, Sherlock) that the authenticated user follows. The default response returns the ID and name of the topic.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getFollowings",
+      "description": "Returns the users that the authenticated user follows. The default response returns the first and last name, ID and URL of the users.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "followBoard",
+      "description": "Makes the authenticated user follow the specified board.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want to follow in the format <username>/<board_name>. For example: designboom/technology",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "followUser",
+      "description": "Makes the authenticated user follow the specified user.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "user",
+          "type": "String",
+          "info": "The username of the user that you want to follow. For example: designboom",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "unfollowBoard",
+      "description": "Makes the authenticated user unfollow the specified board.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want to unfollow in the format <username>/<board_name>. For example: designboom/technology",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "unfollowUser",
+      "description": "Makes the authenticated user unfollow the specified user.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "user",
+          "type": "String",
+          "info": "The username or user ID of the user you want to unfollow. For example: designboom",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createBoard",
+      "description": "Creates a board for the authenticated user. The default response returns the ID, URL and name of the created board.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The name of the new board.",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "The new board’s description.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleBoard",
+      "description": "The default response returns the ID, URL and name of the specified board.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want to fetch in the format <username>/<board_name>. For example: designboom/technology",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateSingleBoard",
+      "description": "Changes the chosen board’s name and/or description. The default response returns the ID, URL and name of the edited board.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want to edit in the format <username>/<board_name>. For example: designboom/technology",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The new board name.",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "The new board description.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteBoard",
+      "description": "Deletes the specified board. This action is permanent and cannot be undone.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want to delete in the format <username>/<board_name>. For example: designboom/technology",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createSinglePin",
+      "description": "Creates a Pin for the authenticated user. The default response returns the note, URL, link and ID of the created Pin.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want the new Pin to be on. In the format <username>/<board_name>. For example: designboom/technology",
+          "required": true
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "info": "The Pin’s description.",
+          "required": true
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "info": "Upload the image you want to pin",
+          "required": true
+        },
+        {
+          "name": "link",
+          "type": "String",
+          "info": "The URL the Pin will link to when you click through.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateSinglePin",
+      "description": "Changes the board, description and/or link of the Pin.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "pin",
+          "type": "String",
+          "info": "The ID (unique string of numbers and letters) of the Pin you want to edit.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want to move the Pin to, in the format <username>/<board_name>. For example: designboom/technology",
+          "required": false
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "info": "The new Pin description.",
+          "required": false
+        },
+        {
+          "name": "link",
+          "type": "String",
+          "info": "The new Pin link.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSinglePin",
+      "description": "The default response returns the ID, link, URL and description of the Pin.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "pin",
+          "type": "String",
+          "info": "The ID (unique string of numbers and letters) of the Pin you want information about.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteSinglePin",
+      "description": "Deletes the specified Pin. This action is permanent and cannot be undone.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "pin",
+          "type": "String",
+          "info": "The ID (unique string of numbers and letters) of the Pin you want to delete.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getBoardPins",
+      "description": "The default response returns a list of Pins on the board with their ID, URL, link and description.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "The valid access token.",
+          "required": true
+        },
+        {
+          "name": "board",
+          "type": "String",
+          "info": "The board you want to fetch in the format <username>/<board_name>. For example: designboom/technology",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
 }
