@@ -43,7 +43,7 @@
           "name": "code",
           "type": "String",
           "info": "The access code you received from your redirect URI.",
-          "required": false
+          "required": true
         }
       ],
       "callbacks": [
