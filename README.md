@@ -1,3 +1,6 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/Pinterest/functions?utm_source=RapidAPIGitHub_PinterestFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
+
 # Pinterest Package
 Add pins, follow and display options to your app.
 * Domain: pinterest.com
