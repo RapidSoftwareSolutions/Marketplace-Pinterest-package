@@ -2,8 +2,8 @@
 
 
 # Pinterest Package
-Add pins, follow and display options to your app.
-* Domain: pinterest.com
+We use a RESTful API that lets you access users' Pinterest data, like their boards, Pins, followers and more.
+* Domain: [pinterest.com](https://pinterest.com)
 * Credentials: clientId, clientSecret
 
 ## How to get credentials: 
@@ -44,13 +44,6 @@ This endpoint returns the boards that Pinterest would suggest to the authenticat
 | accessToken| String| The valid access token.
 | pinId      | String| The pin_id that you want to return board suggestions for.
 
-## Pinterest.getUserLikedPins
-This endpoint returns the ID, link, URL and description of the Pins the authenticated user has liked.
-
-| Field      | Type  | Description
-|------------|-------|----------
-| accessToken| String| The valid access token.
-| cursor     | String| Pass the cursor value in your next request to receive the next 25 items in the list.
 
 ## Pinterest.getUserPins
 This endpoint returns the ID, link, URL and descriptions of the authenticated user’s Pins.

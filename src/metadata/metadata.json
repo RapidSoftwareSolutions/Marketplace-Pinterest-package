@@ -1,7 +1,7 @@
 {
   "package": "Pinterest",
   "tagline": "Pinterest API",
-  "description": "Add pins, follow and display options to your app.",
+  "description": "We use a RESTful API that lets you access users' Pinterest data, like their boards, Pins, followers and more.",
   "image": "http://logo.clearbit.com/pinterest.com",
   "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-Pinterest-package",
   "keywords": [
@@ -116,34 +116,6 @@
           "type": "String",
           "info": "The pin_id that you want to return board suggestions for.",
           "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getUserLikedPins",
-      "description": "This endpoint returns the ID, link, URL and description of the Pins the authenticated user has liked.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "String",
-          "info": "The valid access token.",
-          "required": true
-        },
-        {
-          "name": "cursor",
-          "type": "String",
-          "info": "Pass the cursor value in your next request to receive the next 25 items in the list.",
-          "required": false
         }
       ],
       "callbacks": [
